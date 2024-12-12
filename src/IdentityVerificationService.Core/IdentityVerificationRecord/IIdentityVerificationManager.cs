@@ -8,9 +8,13 @@ namespace IdentityVerificationService.IdentityVerificationRecord
 {
     public interface IIdentityVerificationManager
     {
-        Task<string> VerifyBvnAsync(string identityId);
-        Task<string> VerifyNinAsync(string identityId);
-        Task<string> VerifyDriverLicenseAsync(string identityId);
-        Task<string> VerifyPhoneNo(string identityId);
+
+        Task<string> VerifyBvnAsync(string bvn);
+        Task<string> VerifyNinAsync(string nin);
+        Task<string> VerifyDriverLicenseAsync(string driverLicenseNo);
+        Task<string> VerifyPhoneNoAsync(string phoneNo);
+        Task<string> VerifyInternationalPassportAsync(string passportNo);
+        Task<string> VerifyPvcAsync(string pvc);
+        Task<string> VerifyVninAsync(string Vnin);
     }
 }

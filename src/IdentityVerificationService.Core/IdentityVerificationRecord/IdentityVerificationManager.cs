@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IdentityVerificationService.IdentityVerificationRecord.Services;
+using Abp.Domain.Services;
 
 namespace IdentityVerificationService.IdentityVerificationRecord
 {
-    public class IdentityVerificationManager : IIdentityVerificationManager
+    public class IdentityVerificationManager : DomainService, IIdentityVerificationManager
     {
 
-        private readonly IdentityService _identityVerificationService;
+        private readonly IdentityVerificationRepository _identityVerificationService;
 
-        public IdentityVerificationManager(IdentityService identityVerificationService)
+        public IdentityVerificationManager(IdentityVerificationRepository identityVerificationService)
         {
             _identityVerificationService = identityVerificationService;
         }
@@ -20,21 +20,34 @@ namespace IdentityVerificationService.IdentityVerificationRecord
         {
             return await _identityVerificationService.VerifyBvnAsync(identityId);
         }
-        
-
-        public Task<string> VerifyDriverLicenseAsync(string identityId)
+        public async Task<string> VerifyDriverLicenseAsync(string identityId)
         {
-            throw new NotImplementedException();
+            return await _identityVerificationService.VerifyDriverLicenseAsync(identityId);
         }
 
-        public Task<string> VerifyNinAsync(string identityId)
+        public async Task<string> VerifyNinAsync(string identityId)
         {
-            throw new NotImplementedException();
+            return await _identityVerificationService.VerifyNinAsync(identityId);
         }
 
-        public Task<string> VerifyPhoneNo(string identityId)
+        public async Task<string> VerifyPhoneNoAsync(string identityId)
         {
-            throw new NotImplementedException();
+            return await _identityVerificationService.VerifyPhoneNoAsync(identityId);
         }
+
+        public async Task<string> VerifyInternationalPassportAsync(string identityId)
+        {
+            return await _identityVerificationService.VerifyInternationalPassportAsync(identityId);
+        }
+
+        public async Task<string> VerifyPvcAsync(string identityId)
+        {
+            return await _identityVerificationService.VerifyPvcAsync(identityId);
+        }
+        public async Task<string> VerifyVninAsync(string identityId)
+        {
+            return await _identityVerificationService.VerifyVninAsync(identityId);
+        }
+
     }
 }
