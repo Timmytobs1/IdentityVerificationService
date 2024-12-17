@@ -8,6 +8,7 @@ using Abp.Runtime.Session;
 using Abp.UI;
 using Abp.Web.Models;
 using IdentityVerificationService.IdentityVerificationRecord;
+using IdentityVerificationService.IdentityVerificationRecord.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityVerificationService.IdentityVerification
@@ -18,11 +19,11 @@ namespace IdentityVerificationService.IdentityVerification
 
     public class IdentityVerificationAppService : ApplicationService, IIdentityVerificationAppService
     {
-        private readonly IIdentityVerificationManager _identityVerificationManager;
+        private readonly IdentityVerificationManager _identityVerificationManager;
         private readonly IAbpSession _abpSession;
 
         public IdentityVerificationAppService(
-            IIdentityVerificationManager identityVerificationManager,
+            IdentityVerificationManager identityVerificationManager,
             IAbpSession abpSession)
         {
             _identityVerificationManager = identityVerificationManager;
@@ -173,6 +174,36 @@ namespace IdentityVerificationService.IdentityVerification
             }
         }
 
+    /*    [HttpPost]
+        [Route("api/identity-verification/verify/bvn/{bvn}")]
+        public async Task<IdentityVerificationResponse> VerifyBvnAsync(string bvn)
+        {
+            Console.WriteLine("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+            try
+            {
+                if (bvn.Length != 11)
+                {
+                    return new IdentityVerificationResponse
+                    {
+                        status = "Error",
+                        message = "BVN is not valid",
+                        data = null
+                    };
+                   
+                }
+                return await _identityVerificationManager.VerifyBvnAsync(bvn);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Unhandled error verifying BVN for IdentityId: {bvn}", ex);
+                return new IdentityVerificationResponse
+                {
+                    status = "Error",
+                    message = "An error occurred while verifying BVN. Please try again.",
+                    data = null // Avoid exposing sensitive internal error details
+                };
+            }
+        }*/
 
     }
 }

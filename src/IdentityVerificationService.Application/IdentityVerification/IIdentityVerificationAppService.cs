@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IdentityVerificationService.IdentityVerificationRecord.Dtos;
 
 namespace IdentityVerificationService.IdentityVerification
 {
@@ -10,6 +11,7 @@ namespace IdentityVerificationService.IdentityVerification
     {
 
         Task<string> VerifyBvnAsync(string bvn);
+       /* public Task<IdentityVerificationResponse> VerifyBvnAsync(string bvn);*/
         Task<string> VerifyNinAsync(string nin);
         Task<string> VerifyDriverLicenseAsync(string driverLicenseNo);
         Task<string> VerifyPhoneNoAsync(string phoneNo);
